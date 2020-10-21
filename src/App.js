@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
+import EmailEditor from "react-email-editor";
+
+const App = () => {
+  let editor = {};
+
+  const exportHtml = () => {
+    editor.exportHtml((data) => {
+      const { design, html } = data;
+      console.log("exportHtml", html);
+    });
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <EmailEditor ref={(item) => (editor = item)} />
+      <button onClick={exportHtml}>Export HTML</button>
     </div>
   );
-}
+};
 
 export default App;
